@@ -1,0 +1,40 @@
+img {
+    border-radius: 10px;
+
+    &.selected {
+        border: 3px solid var(--ion-color-primary);
+    }
+}
+
+.images-wrapper{
+
+    width: 35vw;
+
+}
+
+h1 {
+    font-size: 5vw;
+    line-height: 4.5vw;
+    padding: 20px;
+}
+
+@media screen and (max-width: 767px){
+
+    .images-wrapper{
+
+        width: 100%;
+    
+    }
+
+}
+
+
+@media screen and (max-width: 992px){
+
+    .images-wrapper{
+
+        width: 85vw;
+    
+    }
+
+}
