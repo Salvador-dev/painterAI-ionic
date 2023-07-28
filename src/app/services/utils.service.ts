@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ModalController, ModalOptions, ToastController, ToastOptions } from '@ionic/angular';
+import { LoadingController, LoadingOptions, ModalController, ModalOptions, ToastController, ToastOptions } from '@ionic/angular';
 import { Clipboard } from '@capacitor/clipboard';
 import * as fs from 'file-saver';
 import { Share } from '@capacitor/share';
@@ -13,16 +13,34 @@ export class UtilsService {
 
   constructor(
     private modalController: ModalController,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private loadingController: LoadingController
   ) { }
+
+  
+  async presentLoading(opts?: LoadingOptions) {
+    const loading = await this.loadingController.create();
+    await loading.present();
+  }
+
+  async dismissLoading(){
+    return await this.loadingController.dismiss();
+  }
+
 
   async shareImageInMobile(url: string){
 
     let base64: string;
     let path = `${Date.now()}.jpg`;
 
+    this.presentLoading({
+      message: 'Hellooo',
+      duration: 2000,
+      spinner: 'bubbles'
+    });
+
     if(url.includes('https')){
-      base64 = this.convertUrlToBase64(url) as unknown as string;
+      base64 = await this.convertUrlToBase64(url) as unknown as string;
     } else {
 
       base64 = url;
@@ -34,9 +52,11 @@ export class UtilsService {
       directory: Directory.Cache
     }).then(async (res)=> {
 
+      this.dismissLoading();
+
       await Share.share({url: res.uri}).then(() => {
         this.presentToast({
-          message: 'Imagen',
+          message: 'Imagen compartida correctamente',
           color: 'primary',
           icon: 'share-social-outline',
           duration: 1000

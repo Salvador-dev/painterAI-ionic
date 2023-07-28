@@ -29,8 +29,8 @@ export class PostDetailComponent  implements OnInit {
 
     if(this.platform.is('capacitor')){
 
-      //compartir
-
+      this.utilsService.shareImageInMobile(this.selectImage);
+      
     } else {
       this.utilsService.saveImageInWeb(this.selectImage);
     }
