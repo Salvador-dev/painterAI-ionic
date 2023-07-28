@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from 'src/app/models/post.model';
+import { PostsService } from 'src/app/services/posts.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { PostDetailComponent } from 'src/app/shared/post-detail/post-detail.component';
 import { Posts } from 'src/assets/data/images';
@@ -15,7 +16,8 @@ export class HomePage implements OnInit {
   loading: boolean = false;
 
   constructor(
-    private UtilsService: UtilsService
+    private UtilsService: UtilsService,
+    private postsService: PostsService
   ) { }
 
   ngOnInit() {
@@ -39,6 +41,21 @@ export class HomePage implements OnInit {
   }
 
   getPosts() {
+
+    this.loading = true;
+
+    this.postsService.getPosts().subscribe({
+      next: (res: any) => {
+
+        console.log(res);
+        this.posts = res.data;
+        this.loading = false;
+
+      }, error: (err: any) => {
+        console.log(err);
+        this.loading = false;
+      }
+    })
 
     this.posts = Posts;
 

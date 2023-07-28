@@ -7,7 +7,7 @@
       <ion-col size-lg="6" size-md="12" size-sm="12" size="12">
 
         <ion-item lines="none" class="ion-hide-md-up prompt-item">
-          <ion-label>{{post.prompt}}</ion-label>
+          <ion-label class="ion-text-wrap">{{post.prompt}}</ion-label>
           <ion-buttons slot="end">
             <ion-button (click)="copyPromptToClipboard()">
               <ion-icon name="clipboard-outline"></ion-icon>
@@ -51,7 +51,7 @@
             <ion-icon slot="end" [name]="platform.is('capacitor') ? 'share-social-outline' : 'arrow-down-circle-outline'"></ion-icon>
           </ion-button>
 
-          <ion-button shape="round" class="submit-btn">
+          <ion-button *ngIf="isNew" (click)="submit()" shape="round" class="submit-btn">
             Publicar <ion-icon slot="end" name="add-circle-outline"></ion-icon>
           </ion-button>
 

@@ -4,6 +4,7 @@ import { Clipboard } from '@capacitor/clipboard';
 import * as fs from 'file-saver';
 import { Share } from '@capacitor/share';
 import { Filesystem, Directory } from '@capacitor/filesystem';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -14,9 +15,20 @@ export class UtilsService {
   constructor(
     private modalController: ModalController,
     private toastController: ToastController,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private router: Router
   ) { }
 
+  routerLink(url: string){
+    return this.router.navigateByUrl(url);
+  }
+
+  setElementInLocalStorage(key: string, element: any) {
+    return localStorage.setItem(key, JSON.stringify(Element));
+  }
+  getElementFromLocalStorage(key: string){
+    return JSON.parse(localStorage.getItem(key) as string);
+  }
   
   async presentLoading(opts?: LoadingOptions) {
     const loading = await this.loadingController.create();
