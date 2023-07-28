@@ -24,7 +24,7 @@ export class UtilsService {
   }
 
   setElementInLocalStorage(key: string, element: any) {
-    return localStorage.setItem(key, JSON.stringify(Element));
+    return localStorage.setItem(key, JSON.stringify(element));
   }
   getElementFromLocalStorage(key: string){
     return JSON.parse(localStorage.getItem(key) as string);
