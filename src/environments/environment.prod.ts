@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  baseUrl: "http://localhost:8080/api/v1/",
+  // baseUrl: "http://localhost:8080/api/v1/",
+  baseUrl: "https://painterai.up.railway.app/api/v1/",
+
   imageai: "imageai",
   posts: "posts"
 };
