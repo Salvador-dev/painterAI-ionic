@@ -15,12 +15,21 @@ export class PostsService {
 
 
   getPosts(){
-    return this.http.get(environment.baseUrl + environment.posts);
+    let headers = {
+      TokenAuth: "N0UV50RD0S3CL0RVM"
+    }
+
+    return this.http.get(environment.baseUrl + environment.posts, {headers: headers});
   }
 
   
   createPosts(post: Post){
-    return this.http.post(environment.baseUrl + environment.posts, post);
+
+    let headers = {
+      TokenAuth: "N0UV50RD0S3CL0RVM"
+    }
+
+    return this.http.post(environment.baseUrl + environment.posts, post, { headers: headers});
   }
 
 }

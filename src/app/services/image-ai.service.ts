@@ -13,7 +13,11 @@ export class ImageAiService {
 
   sendPrompt(prompt: string){
 
-    return this.http.post(environment.baseUrl + environment.imageai, {prompt});
+    let headers = {
+      TokenAuth: "N0UV50RD0S3CL0RVM"
+    }
+
+    return this.http.post(environment.baseUrl + environment.imageai, {prompt}, {headers: headers});
 
   }
 }
